@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\v1\CategoryController;
+use App\Http\Controllers\Api\v1\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,11 +30,11 @@ Route::prefix('v1')->namespace('Api\v1')->group(function () {
     Route::delete('/category/{category}', [CategoryController::class,'destroy'])->name('categories.destroy');
     //router posts controller
 
-    Route::get('/posts', 'PostController@index')->name('post.all');
-    Route::post('/posts', 'PostController@store')->name('post.store');
-    Route::get('/posts/{category}', 'PostController@show')->name('post.show');
-    Route::put('/posts/{category}', 'PostController@update')->name('post.update');
-    Route::delete('/posts/{category}', 'PostController@destroy')->name('post.destroy');
+    Route::get('/posts', [PostController::class,'index'])->name('post.all');
+    Route::post('/posts',  [PostController::class,'store'])->name('post.store');
+    Route::get('/posts/{post}', [PostController::class,'show'])->name('post.show');
+    Route::put('/posts/{post}', [PostController::class,'update'])->name('post.update');
+    Route::delete('/posts/{post}', [PostController::class,'destroy'])->name('post.destroy');
     //router tags controller
 
     Route::get('/tags', 'TagController@index')->name('tag.all');
